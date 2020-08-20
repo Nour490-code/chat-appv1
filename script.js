@@ -1,4 +1,4 @@
-const socket  = io('http://localhost:4000');
+const socket  = io(`http://localhost:${process.env.PORT || 4000}`);
 const form = document.getElementById('send-container');
 const input = document.getElementById('message-input');
 const container = document.getElementById('message-container');
@@ -9,6 +9,7 @@ socket.emit('newUser',name)
 
 socket.on('message', data =>{
     appendMsg(`${data.name}: ${data.message}`)
+    console.log(data)
 })
 socket.on('user-connected', name =>{
     appendMsg(`${name} Connected`)
